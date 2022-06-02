@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="academy.bangkit.c22.px442.smartfarm.ui.main.components.HomeFragment"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_journal"
+        android:name="academy.bangkit.c22.px442.smartfarm.ui.main.components.JournalFragment"
+        tools:layout="@layout/fragment_journal" />
+
+    <fragment
+        android:id="@+id/navigation_camera"
+        android:name="academy.bangkit.c22.px442.smartfarm.ui.main.components.CameraFragment"
+        tools:layout="@layout/fragment_camera" />
+
+</navigation>
