@@ -7,6 +7,6 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="academy.bangkit.c22.px442.smartfarm.ui.main.MainFragment"
+        android:name="academy.bangkit.c22.px442.smartfarm.presentation.ui.main.MainFragment"
         tools:layout="@layout/fragment_main"/>
 </navigation>

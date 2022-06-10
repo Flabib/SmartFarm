@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="academy.bangkit.c22.px442.smartfarm.ui.main.components.HomeFragment"
+        android:name="academy.bangkit.c22.px442.smartfarm.presentation.ui.main.components.HomeFragment"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_journal"
-        android:name="academy.bangkit.c22.px442.smartfarm.ui.main.components.JournalFragment"
+        android:name="academy.bangkit.c22.px442.smartfarm.presentation.ui.main.components.JournalFragment"
         tools:layout="@layout/fragment_journal" />
 
     <fragment
         android:id="@+id/navigation_camera"
-        android:name="academy.bangkit.c22.px442.smartfarm.ui.main.components.CameraFragment"
+        android:name="academy.bangkit.c22.px442.smartfarm.presentation.ui.main.components.CameraFragment"
         tools:layout="@layout/fragment_camera" />
 
 </navigation>

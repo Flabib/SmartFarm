@@ -1,15 +1,15 @@
-package academy.bangkit.c22.px442.smartfarm.ui.main
+package academy.bangkit.c22.px442.smartfarm.presentation.ui.main.components
 
-import academy.bangkit.c22.px442.smartfarm.databinding.FragmentMainBinding
+import academy.bangkit.c22.px442.smartfarm.databinding.FragmentJournalBinding
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
-class MainFragment : Fragment() {
+class JournalFragment : Fragment() {
 
-    private var _binding: FragmentMainBinding? = null
+    private var _binding: FragmentJournalBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -17,7 +17,7 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentMainBinding.inflate(inflater, container, false)
+        _binding = FragmentJournalBinding.inflate(inflater, container, false)
         return binding.root
 
     }

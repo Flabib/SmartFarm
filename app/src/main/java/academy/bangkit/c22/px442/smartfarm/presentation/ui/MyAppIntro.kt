@@ -1,4 +1,4 @@
-package academy.bangkit.c22.px442.smartfarm.ui
+package academy.bangkit.c22.px442.smartfarm.presentation.ui
 
 import academy.bangkit.c22.px442.smartfarm.R
 import android.os.Bundle

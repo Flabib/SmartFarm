@@ -1,15 +1,15 @@
-package academy.bangkit.c22.px442.smartfarm.ui.main.components
+package academy.bangkit.c22.px442.smartfarm.presentation.ui.main.components
 
-import academy.bangkit.c22.px442.smartfarm.databinding.FragmentCameraBinding
+import academy.bangkit.c22.px442.smartfarm.databinding.FragmentHomeBinding
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
-class CameraFragment : Fragment() {
+class HomeFragment : Fragment() {
 
-    private var _binding: FragmentCameraBinding? = null
+    private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -17,7 +17,7 @@ class CameraFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentCameraBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
 
     }
