@@ -6,4 +6,37 @@
     </style>
 
     <style name="Theme.SmartFarm" parent="Base.Theme.SmartFarm" />
+
+    <style name="Theme.SmartFarm.ErrorText" parent="TextAppearance.Design.Error">
+        <item name="android:textColor">#FF0000</item>
+        <item name="android:textSize">@dimen/value_12sp</item>
+    </style>
+
+    <style name="Theme.SmartFarm.TextInputLayout">
+        <item name="hintEnabled">false</item>
+        <item name="boxBackgroundMode">none</item>
+    </style>
+
+    <style name="Theme.SmartFarm.TextInputEditText">
+        <item name="android:longClickable">false</item>
+        <item name="android:textSize">@dimen/value_16sp</item>
+        <item name="android:padding">@dimen/value_10dp</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:background">@drawable/bg_rounded</item>
+    </style>
+
+    <style name="RoundedShape.Detail" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeBottomLeft">@dimen/value_16dp</item>
+        <item name="cornerSizeBottomRight">@dimen/value_16dp</item>
+    </style>
+
+    <style name="RoundedShape.Post" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeBottomLeft">@dimen/value_16dp</item>
+        <item name="cornerSizeBottomRight">@dimen/value_16dp</item>
+        <item name="cornerSizeTopLeft">@dimen/value_16dp</item>
+        <item name="cornerSizeTopRight">@dimen/value_16dp</item>
+    </style>
 </resources>

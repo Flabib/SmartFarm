@@ -38,10 +38,9 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         lifecycleScope.launch {
-//            val preferences = dataStore.data.first()
-
+            val preferences = dataStore.data.first()
             try {
-//                if (preferences[FIRST_RUN_KEY] == false)
+                if (preferences[FIRST_RUN_KEY] == false)
                 startActivity(Intent(this@LoginActivity, MyAppIntro::class.java))
             } finally {
                 dataStore.edit { it[FIRST_RUN_KEY] = true }
