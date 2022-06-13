@@ -49,10 +49,10 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     // Tensorflow lite dependencies
-    implementation 'org.tensorflow:tensorflow-lite:2.8.0'
-    implementation 'org.tensorflow:tensorflow-lite-gpu:2.8.0'
-    implementation 'org.tensorflow:tensorflow-lite-support:0.1.0'
-    implementation 'org.tensorflow:tensorflow-lite-metadata:0.1.0'
+    implementation 'org.tensorflow:tensorflow-lite:2.9.0'
+    implementation 'org.tensorflow:tensorflow-lite-gpu:2.9.0'
+    implementation 'org.tensorflow:tensorflow-lite-support:0.4.1'
+    implementation 'org.tensorflow:tensorflow-lite-metadata:0.4.1'
 
     // CameraX
     def camerax_version = "1.1.0-beta01"

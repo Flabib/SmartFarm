@@ -6,14 +6,16 @@ import academy.bangkit.c22.px442.smartfarm.databinding.FragmentCameraBinding
 import academy.bangkit.c22.px442.smartfarm.ml.Model
 import academy.bangkit.c22.px442.smartfarm.presentation.dialog.CustomProgressDialog
 import academy.bangkit.c22.px442.smartfarm.presentation.dialog.SnackBarCustom
+import academy.bangkit.c22.px442.smartfarm.presentation.utils.JavaHelper
+import academy.bangkit.c22.px442.smartfarm.presentation.utils.PestisidaHelper.Companion.pestisidaFromResult
 import academy.bangkit.c22.px442.smartfarm.presentation.utils.createCustomTempFile
 import academy.bangkit.c22.px442.smartfarm.presentation.utils.uriToFile
-import androidx.navigation.fragment.findNavController
 import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
@@ -30,8 +32,8 @@ import androidx.core.content.FileProvider
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import org.tensorflow.lite.DataType
-import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.io.File
 
@@ -48,6 +50,9 @@ class CameraFragment : Fragment() {
     private var _binding: FragmentCameraBinding? = null
     private val binding get() = _binding!!
 
+    var image: Bitmap? = null
+    val imageSize = 300
+
     private val launcherIntentCamera =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == Activity.RESULT_OK) {
@@ -56,7 +61,11 @@ class CameraFragment : Fragment() {
                 viewModel.setImgBitmap(myFile)
 
                 binding.placeHolder.isVisible = false
-                binding.imgPreview.setImageBitmap(BitmapFactory.decodeFile(myFile.path))
+
+                image = BitmapFactory.decodeFile(myFile.path)
+                binding.imgPreview.setImageBitmap(image)
+
+                image = Bitmap.createScaledBitmap(image!!, imageSize, imageSize, false)
             }
         }
 
@@ -65,12 +74,15 @@ class CameraFragment : Fragment() {
             if (it.resultCode == Activity.RESULT_OK) {
                 val selectedImg: Uri = it.data?.data as Uri
                 val myFile = uriToFile(selectedImg, requireActivity())
-                val result = BitmapFactory.decodeFile(myFile.path)
                 getFile = myFile
                 viewModel.setImgBitmap(myFile)
 
                 binding.placeHolder.isVisible = false
-                binding.imgPreview.setImageBitmap(result)
+
+                image = BitmapFactory.decodeFile(myFile.path)
+                binding.imgPreview.setImageBitmap(image)
+
+                image = Bitmap.createScaledBitmap(image!!, imageSize, imageSize, false)
             }
         }
 
@@ -150,16 +162,41 @@ class CameraFragment : Fragment() {
 
             btnPost.setOnClickListener {
                 progressDialog.show()
-                if (getFile != null) {
-                    val model = Model.newInstance(requireActivity())
-                    val tensorImage = TensorImage.fromBitmap(BitmapFactory.decodeFile(getFile?.path))
+                if (image != null) {
+                    val model = Model.newInstance(requireActivity().applicationContext)
+
+                    // Creates inputs for reference.
                     val inputFeature0 = TensorBuffer.createFixedSize(
-                        intArrayOf(1, 300, 300, 3), DataType.FLOAT32
+                        intArrayOf(1, imageSize, imageSize, 3), DataType.FLOAT32
                     )
+
+                    // Work here
+                    val byteBuffer = JavaHelper.imageToByteBuffer(image, imageSize)
+
+                    inputFeature0.loadBuffer(byteBuffer)
 
                     // Runs model inference and gets result.
                     val outputs = model.process(inputFeature0)
                     val outputFeature0 = outputs.outputFeature0AsTensorBuffer
+
+                    // Last here
+                    val confidences = outputFeature0.floatArray
+                    // find the index of the class with the biggest confidence.
+                    // find the index of the class with the biggest confidence.
+                    var maxPos = 0
+                    var maxConfidence = 0f
+                    for (i in confidences.indices) {
+                        if (confidences[i] > maxConfidence) {
+                            maxConfidence = confidences[i]
+                            maxPos = i
+                        }
+                    }
+                    val classes = arrayOf("Bacterialblight", "Blast", "Brownspot", "Tungro")
+
+                    binding.txtResult.text = classes[maxPos]
+
+                    binding.txtPestisida.text = pestisidaFromResult(classes[maxPos])[0]
+                    binding.txtDesc.text = pestisidaFromResult(classes[maxPos])[1]
 
                     // Releases model resources if no longer used.
                     model.close()

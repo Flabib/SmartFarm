@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.ui.camera.CameraActivity">
+    tools:context=".presentation.ui.main.components.CameraFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -51,12 +51,44 @@
         app:layout_constraintTop_toTopOf="@+id/img_preview"
         android:contentDescription="@string/title_place_holder" />
 
+    <TextView
+        android:id="@+id/txtResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_preview" />
+
+    <TextView
+        android:id="@+id/txtPestisida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtResult" />
+
+    <TextView
+        android:id="@+id/txtDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPestisida" />
+
     <academy.bangkit.c22.px442.smartfarm.presentation.ui.customview.CustomButton
         android:id="@+id/btn_post"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/value_16dp"
-        android:layout_marginBottom="@dimen/value_8dp"
+        android:layout_marginBottom="32dp"
         android:enabled="false"
         android:fontFamily="@font/prompt_medium"
         android:text="Analyze Photo"
